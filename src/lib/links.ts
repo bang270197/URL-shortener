@@ -39,3 +39,10 @@ export async function createShortLink(input: CreateLinkInput): Promise<ShortLink
 export function findShortLinkByCode(code: string): Promise<ShortLink | null> {
   return prisma.shortLink.findUnique({ where: { code: normalizeCode(code) } });
 }
+
+export function listRecentShortLinks(): Promise<ShortLink[]> {
+  return prisma.shortLink.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 10,
+  });
+}
