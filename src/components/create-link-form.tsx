@@ -22,7 +22,7 @@ export function CreateLinkForm() {
 
   return <form className="card form-card" onSubmit={submit}>
     <div className="field"><label htmlFor="url">Destination URL</label><input className="input" id="url" type="url" required placeholder="https://example.com/your-long-link" value={url} onChange={event => setUrl(event.target.value)} /></div>
-    <div className="field"><label htmlFor="code">Custom code</label><div className="code-row"><span className="code-prefix">shortly.app/</span><input className="input" id="code" required minLength={3} maxLength={50} pattern="[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*" placeholder="my-link" value={code} onChange={event => setCode(event.target.value)} /></div></div>
+    <div className="field"><label htmlFor="code">Custom code</label><div className="code-row"><span className="code-prefix">shortly.app/</span><input className="input" id="code" required minLength={3} maxLength={50} pattern="[A-Za-z0-9-]{3,50}" placeholder="my-link" value={code} onChange={event => setCode(event.target.value)} /></div></div>
     {error && <p className="error" role="alert">{error}</p>}
     <button className="button" disabled={pending}>{pending ? "Creating…" : "Create short link"}</button>
     {shortUrl && <div className="result"><div><strong>Ready to share</strong><br /><code>{shortUrl}</code></div><button className="button" type="button" onClick={() => navigator.clipboard.writeText(shortUrl)}>Copy</button></div>}
