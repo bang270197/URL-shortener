@@ -1,7 +1,7 @@
 # Supabase persistence for Shortly
 
-**Status:** Approved design; awaiting implementation-plan review  
-**Date:** 2026-10-11  
+**Status:** Approved design; awaiting implementation-plan review
+**Date:** 2026-10-11
 **Scope:** Replace the in-memory URL-shortener store with persistent Supabase PostgreSQL storage.
 
 ## 1. Purpose and success criteria
