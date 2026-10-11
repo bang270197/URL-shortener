@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model ShortLink {
+  id             String       @id @default(cuid())
+  code           String       @unique
+  destinationUrl String
+  createdAt      DateTime     @default(now())
+  clickEvents    ClickEvent[]
+}
+
+model ClickEvent {
+  id          String     @id @default(cuid())
+  shortLinkId String
+  clickedAt   DateTime   @default(now())
+  deviceType  DeviceType
+  browser     String
+  shortLink   ShortLink  @relation(fields: [shortLinkId], references: [id], onDelete: Cascade)
+
+  @@index([shortLinkId])
+  @@index([clickedAt])
+  @@index([shortLinkId, clickedAt])
+}
+
+enum DeviceType {
+  desktop
+  mobile
+  tablet
+  other
+}

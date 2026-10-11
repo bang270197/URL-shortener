@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^6.6.0",
@@ -24,6 +27,7 @@
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "dotenv": "^16.6.1",
     "eslint": "^9.26.0",
     "eslint-config-next": "^15.3.1",
     "jsdom": "^26.1.0",
