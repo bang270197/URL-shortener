@@ -1,19 +1,27 @@
 import { NextResponse } from "next/server";
-import { recordClick } from "@/lib/links-store";
+
+import { classifyUserAgent, recordClick } from "@/lib/analytics";
+import { findShortLinkByCode } from "@/lib/links";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ code: string }> },
 ) {
   const { code } = await params;
-  const link = recordClick(code);
+  const link = await findShortLinkByCode(code);
 
   if (!link) {
     return new NextResponse("Not found", { status: 404 });
   }
 
-  return new NextResponse(null, {
-    status: 302,
-    headers: { location: link.destinationUrl },
-  });
+  const userAgent = request.headers.get("user-agent");
+  if (!classifyUserAgent(userAgent).isBot) {
+    try {
+      await recordClick(link.id, userAgent);
+    } catch {
+      console.error("Unable to record short-link click");
+    }
+  }
+
+  return NextResponse.redirect(link.destinationUrl, 302);
 }
