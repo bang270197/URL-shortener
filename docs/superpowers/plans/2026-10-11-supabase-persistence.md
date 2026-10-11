@@ -63,7 +63,7 @@ Use a region appropriate to deployment. The user approves all organization/billi
 
 - [ ] **Step 3: Run the test to verify failure**
 
-Run: `npm.cmd test -- prisma/schema.test.ts`  
+Run: `npm.cmd test -- prisma/schema.test.ts`
 Expected: FAIL because the schema is absent.
 
 - [ ] **Step 4: Implement configuration and schema**
@@ -90,7 +90,7 @@ Assert `My-Link` becomes `my-link`; lengths 3 and 50 pass; invalid length, white
 
 - [ ] **Step 2: Run validation tests to verify failure**
 
-Run: `npm.cmd test -- src/lib/validation.test.ts`  
+Run: `npm.cmd test -- src/lib/validation.test.ts`
 Expected: FAIL because the module is absent.
 
 - [ ] **Step 3: Implement validation**
@@ -117,7 +117,7 @@ Mock Task 2 services. Assert valid JSON returns 201 and a URL based on `NEXT_PUB
 
 - [ ] **Step 2: Run the route tests to verify failure**
 
-Run: `npm.cmd test -- src/app/api/links/route.test.ts`  
+Run: `npm.cmd test -- src/app/api/links/route.test.ts`
 Expected: FAIL because it imports `links-store`.
 
 - [ ] **Step 3: Implement and remove old store**
