@@ -30,3 +30,6 @@ Thumbs.db
 
 # Local Git worktrees
 .worktrees/
+
+# Agent execution ledgers
+.superpowers/
